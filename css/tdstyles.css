@@ -1,0 +1,34 @@
+canvas{
+	background-color: #D4E7ED;
+	float: left;
+}
+
+#mainwindow{
+	width: 1000px;
+	height: 600px;
+	border: solid black 1px;
+	margin: 0;
+}
+
+#gamewindow{
+	float: right;
+	width: 200px;
+	height: 600px;
+	background-color: #21D1A8;
+}
+
+.tower{
+	height: 30px;
+	width: 30px;
+	margin: 2px;
+	text-indent: 50px;
+	line-height: 2;
+	font-family: Calibri;
+	font-weight: bold;
+	color: #50576A;
+	margin-top: 10px;
+}
+
+.red{ background-color: #FF6357; }
+.blue{ background-color: #5B9AFF; }
+.gray{ background-color: #ADBBBF; }
