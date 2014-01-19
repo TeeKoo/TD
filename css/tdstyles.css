@@ -3,11 +3,25 @@ canvas{
 	float: left;
 }
 
+#maintitle{
+	position: absolute;
+}
+
+#maintitle p{
+	margin-top: 200px;
+	margin-left: 160px;
+	font-family: Calibri;
+	font-size: 50px;
+	color: white;
+	text-shadow: 2px 2px rgb(50,50,50);
+}
+
 #mainwindow{
 	width: 1000px;
 	height: 600px;
 	border: solid black 1px;
 	margin: 0;
+	position: relative;
 }
 
 #gamewindow{

@@ -10,8 +10,9 @@
     <script type="text/javascript" src="classes/Tower.js"></script>
   </head>
   <body>
-  	<div id="mainwindow">
-  		<canvas id="game" width="800" height="600" onclick="startGame();"></canvas>
+  	<div id="mainwindow"onclick="startGame();">
+      <div id="maintitle"><p>Click to start the game.</p></div>
+  		<canvas id="game" width="800" height="600"></canvas>
   		<div id="gamewindow">
   			<div>Towers</div>
   			<div>

@@ -95,3 +95,9 @@ Tower.prototype.getBulletOnTheFly = function(){
 Tower.prototype.getDamage = function(){
   return this.damage;
 }
+
+Tower.prototype.resetBullets = function(){
+  this.bulletX = this.posX+16;
+  this.bulletY = this.posY+16;
+  this.setBulletLock(-1);
+}

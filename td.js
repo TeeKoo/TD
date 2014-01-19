@@ -52,6 +52,7 @@ function drawEnemies(enemy){
     if (enemy.getX()>=557 && enemy.getY()<=210)
       enemy.move('right');
     enemy.animate();
+    drawEnemyHealth(enemy);
   }
 }
 
@@ -72,6 +73,7 @@ function startGame(){
 	if ( gamestarted===false ){
 		setInterval( gameLoop, FRAMERATE );
 		gamestarted=true;
+    document.getElementById('maintitle').style.display = "none";
 	}
 }
 
@@ -139,23 +141,33 @@ function buildTower(x,y){
 
 function shootEnemies(){
   for(var i=0; i<towers.length; i++){
-    var nearest_enemy;
+    var priority_enemy;
+    var lowest_health = 100;
     var closest_distance = 151;
     for (var a = 0; a < enemyArr.length; a++) {
       if (enemyArr[a].isLive()===true){
         var distX = towers[i].bulletX - (enemyArr[a].getX()+16);
         var distY = towers[i].bulletY - (enemyArr[a].getY()+16);
+        var towerdistX = (towers[i].getX()+16) - (enemyArr[a].getX()+16);
+        var towerdistY = (towers[i].getY()+16) - (enemyArr[a].getY()+16);
         var dist = Math.sqrt((distX * distX) + (distY * distY));
+        var towerdist  = Math.sqrt((towerdistX * towerdistX) + (towerdistY * towerdistY));
+
         if (dist<closest_distance){
-          nearest_enemy = enemyArr[a];
+          priority_enemy = enemyArr[a];
           closest_distance = dist;
         }
       }
-    };
+
+      if (towers[i].getBulletLock()==enemyArr[a].getId() && enemyArr[a].isLive()===false)
+        towers[i].resetBullets();
+    }
+
     if (closest_distance<=150){
-      shootTo(towers[i], nearest_enemy);
+      shootTo(towers[i], priority_enemy);
       towers[i].setBulletOnTheFly(true);
     }
+
   }
 
 }
@@ -192,5 +204,13 @@ function shootTo(tower, enemy){
       tower.setBulletLock(-1);
     }
   }
+
 }
 
+
+function drawEnemyHealth(enemy){
+  canvas.fillStyle = "green";
+  if (enemy.getHealth()<30)
+    canvas.fillStyle = "red";
+  canvas.fillRect (enemy.getX(), enemy.getY()-5, ((enemy.width*enemy.getHealth())/100), 3);
+}
